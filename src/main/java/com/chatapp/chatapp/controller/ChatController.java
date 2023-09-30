@@ -21,9 +21,7 @@ public class ChatController {
     }
     @MessageMapping("/addUser")
     @SendTo("/topic/public")
-    private Message addNewUser(@Payload Message message,
-    SimpMessageHeaderAccessor accesor
-    ){
+    private Message addNewUser(@Payload Message message, SimpMessageHeaderAccessor accesor){
         System.out.println("ReceivePublicMessage---------------->"+message);
         accesor.getSessionAttributes().put("username", message.getSenderName());
         return message;
