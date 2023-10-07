@@ -21,7 +21,7 @@ public class WebSocketEventListener {
         StompHeaderAccessor accesor = StompHeaderAccessor.wrap(disconnectEvent.getMessage());
         String userName = (String) accesor.getSessionAttributes().get("username");
         if(userName!=null){
-            Message message = new Message(userName,"","", Status.LEAVE);
+            Message message = new Message(userName,"","", "",Status.LEAVE);
             messageSendingTemplate.convertAndSend("/topic/public",message);
         }
     }

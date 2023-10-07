@@ -207,6 +207,11 @@ button.accent {
     color: #43464b;
 }
 
+p {
+    word-wrap: normal;
+    overflow-wrap: break-word;
+}
+
 #messageForm .input-group input {
     float: left;
     width: calc(100% - 85px);

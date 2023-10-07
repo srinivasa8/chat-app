@@ -27,11 +27,11 @@ public class ChatController {
         return message;
     }
 
- /*   @MessageMapping("/private-message")
+   @MessageMapping("/private-message")
     private Message receivePrivateMessage(@Payload Message message){
         System.out.println("ReceivePrivateMessage---------------->"+message);
         //user/userName/private
-        messagingTemplate.convertAndSendToUser(message.getRecieverName(),"/private",message);
+        messagingTemplate.convertAndSendToUser(message.getReceiverName(),"/private",message);
         return message;
-    }*/
+    }
 }
