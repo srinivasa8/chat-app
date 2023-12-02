@@ -39,7 +39,7 @@ const onConnected=(event) =>{
 const notifyAudio = new Audio('short-success-sound.mp3');
 
 const OnMessageReceived =(payload)=>{
-    var inputMessage =JSON.parse(payload.body);
+    var inputMessage = JSON.parse(payload.body);
     var messageElement = document.createElement("li");
     var alertMessage ="New message received!";
     if(inputMessage.status==='JOIN'){
@@ -63,8 +63,7 @@ const OnMessageReceived =(payload)=>{
         var avatar = document.createElement("i");
         var avatarText = document.createTextNode(inputMessage.senderName[0]);
         avatar.appendChild(avatarText);
-        avatar.style['background-color'] = '#ff85af';//
-        //avatarElement.style['background-color'] = getAvatarColor(message.sender);
+        avatar.style['background-color'] = '#ff85af';
         messageElement.appendChild(avatar);
 
         var userNameElement = document.createElement("span");
@@ -144,7 +143,6 @@ const showMessage = (inputMessage) => {
      var avatarText = document.createTextNode(inputMessage.senderName[0]);
      avatar.appendChild(avatarText);
      avatar.style['background-color'] = '#ff85af';
-     //avatarElement.style['background-color'] = getAvatarColor(message.sender);
      messageElement.appendChild(avatar);
 
      var userNameElement = document.createElement("span");
