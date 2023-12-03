@@ -6,37 +6,23 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class ChatController {
 
-    private SimpMessagingTemplate messagingTemplate;
-
     @Autowired
-    private MessageController mc;
+    private ChatService chatService;
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/public")
     private Message sendMessage(@Payload Message message){
-        mc.addMessage(message);
-        System.out.println("ReceivePublicMessage---------------->"+message);
-        return message;
+        return chatService.sendMessage(message);
     }
+
     @MessageMapping("/addUser")
     @SendTo("/topic/public")
     private Message addNewUser(@Payload Message message, SimpMessageHeaderAccessor accesor){
-        System.out.println("ReceivePublicMessage---------------->"+message);
-        accesor.getSessionAttributes().put("username", message.getSenderName());
-        return message;
-    }
-
-   @MessageMapping("/private-message")
-    private Message receivePrivateMessage(@Payload Message message){
-        System.out.println("ReceivePrivateMessage---------------->"+message);
-        //user/userName/private
-        messagingTemplate.convertAndSendToUser(message.getReceiverName(),"/private",message);
-        return message;
+        return chatService.addNewUser(message,accesor);
     }
 }

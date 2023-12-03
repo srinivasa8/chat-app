@@ -13,6 +13,7 @@ const submit = (event) =>{
     console.log("entered submit");
     userName =  document.getElementById("name").value;
     if(userName){
+        getAndShowPastMessages();
         userNamePage.classList.add("hidden");
         chatPage.classList.remove("hidden");
 
@@ -25,7 +26,6 @@ const submit = (event) =>{
 }
 
 const onConnected=(event) =>{
-    getAndShowPastMessages();
     stompClient.subscribe('/topic/public',OnMessageReceived);
     var message = {
         senderName: userName,
